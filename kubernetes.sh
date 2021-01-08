@@ -13,8 +13,13 @@ az aks show --name myAKSCluster --resource-group k8group
 sudo az aks install-cli
 az aks get-credentials --resource-group k8group --name myAKSCluster
 
-#install docker
+#install docker and add user to docker group
 curl https://get.docker.com | sudo bash
+sudo usermod -aG docker $(whoami)
+
+#install docker-compose and make it executable
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 #configure kubectl
 
